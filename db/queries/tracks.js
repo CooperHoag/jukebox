@@ -18,3 +18,13 @@ export const getAllTracks = async () => {
   const { rows: currentTracks } = await db.query(sql)
   return currentTracks;
 }
+
+export const getTracksById = async (id) => {
+  const sql = `
+    SELECT *
+    FROM tracks
+    WHERE id = $1
+  `;
+  const { rows: [track] } = await db.query(sql, [id])
+  return track;
+}
